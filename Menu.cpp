@@ -1,6 +1,5 @@
 #include <graphics.h>
 #include <string>
-#include <iostream>
 #include <math.h>
 
 int MainMenu(int, int, char*);
@@ -18,9 +17,8 @@ void About();
 int main()
 {
 	initwindow(1920, 1080);
-	int number = -1, k = 0, numberVertical = -1;
+	int number = -1, k = 0, numberVertical = -1, maxx;
 	char key = 'd';
-	getch();
 	MainMenu(number, -2, &key);
 	label1:
 	MainMenu(number, -2, &key);
