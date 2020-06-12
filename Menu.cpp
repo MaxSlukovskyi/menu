@@ -17,7 +17,7 @@ void About();
 int main()
 {
 	initwindow(1920, 1080);
-	int number = -1, k = 0, numberVertical = -1, maxx;
+	int number = -1, k = 0, numberVertical = -1;
 	char key = 'd';
 	MainMenu(number, -2, &key);
 	label1:
@@ -49,7 +49,7 @@ int main()
 			MainMenu(number, -2, &key);
 			goto label2;
 		}
-		case 's':
+		case 's': //down
 		{
 			if(k == 0)
 				goto label1;
@@ -62,7 +62,7 @@ int main()
 				goto label2;
 			}
 		}
-		case 'w':
+		case 'w': //up
 		{
 			if(k == 0)
 				goto label1;
