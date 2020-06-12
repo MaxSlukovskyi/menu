@@ -2,7 +2,6 @@
 #include <string>
 #include <iostream>
 #include <math.h>
-#include <iostream>
 
 int MainMenu(int, int, char*);
 int SecondMenu(int, int);
@@ -14,12 +13,14 @@ void Action20();
 void Action21();
 void Action30();
 void Action31();
+void About();
 
 int main()
 {
 	initwindow(1920, 1080);
 	int number = -1, k = 0, numberVertical = -1;
 	char key = 'd';
+	getch();
 	MainMenu(number, -2, &key);
 	label1:
 	MainMenu(number, -2, &key);
@@ -33,7 +34,7 @@ int main()
 			bar(0, getmaxy() / 9 + 20, getmaxx(), getmaxy() / 5 + (getmaxy() / 5 - 30 - getmaxy() / 9));
 			k = 0;
 			if(number == 0)
-				number = 5;
+				number = 6;
 			number--;
 			MainMenu(number, -2, &key);
 			goto label2;
@@ -44,7 +45,7 @@ int main()
 			setfillstyle(1, 0);
 			bar(0, getmaxy() / 9 + 20, getmaxx(), getmaxy() / 5 + (getmaxy() / 5 - 30 - getmaxy() / 9));
 			k = 0;
-			if(number == 4)
+			if(number == 5)
 				number = -1;
 			number++;
 			MainMenu(number, -2, &key);
@@ -207,6 +208,23 @@ int MainMenu(int number, int numberVertical, char *key)
 	setfillstyle(1, 9);
 	bar(getmaxx() * 4 / 5 + 1, 0, getmaxx(), getmaxy() / 9 + a);
 	outtextxy(getmaxx() * 4 / 5 + getmaxx() / 10 - 30, getmaxy() / 18 - 10 + a /2, "Вихід");
+	settextstyle(3, 0, 1);
+	if(number == 5)
+	{
+		setfillstyle(1, 10);
+		bar(getmaxx() - 170, getmaxy() - 55, getmaxx(), getmaxy());
+		outtextxy(getmaxx() - 135, getmaxy() - 40, "Про автора");
+		tempKey = getch();
+		*key = tempKey;
+		if(tempKey == 13)
+			About();
+		setfillstyle(1, 0);
+		bar(getmaxx() - 195, getmaxy() - 55, getmaxx(), getmaxy());
+	}
+	setfillstyle(1, 9);
+	bar(getmaxx() - 160, getmaxy() - 45, getmaxx(), getmaxy());
+	outtextxy(getmaxx() - 130, getmaxy() - 35, "Про автора");
+	settextstyle(6, 0, 1);
 	return k;
 }
 
@@ -255,7 +273,6 @@ int SecondMenu(int number, int numberVertical)
 void Action00()
 {
 	cleardevice();
-	cleardevice();
   	int sqx, sqy, x1, y1;
   	float x, y, h = 1;
   	sqx = getmaxx() / 2;
@@ -287,8 +304,30 @@ void Action00()
 void Action01()
 {
 	cleardevice();
-	outtextxy(00, 600, "01");
+  	int sqx, sqy, x1, y1;
+  	float x, y, h = 1;
+  	sqx = getmaxx() / 2;
+	sqy = getmaxy() / 2;
+  	int a = 54;
+    int r =50;
+    int k;
+    for(int m=0;m<=100000;m+=h)
+    {
+		x = (a + r * cos(m)) * 2;
+		y = (a * tan(m) + r * sin(m)) / 2;
+		x1 = sqx + x;
+		y1 = sqy - y;
+		if(y1 == 1000)
+			k = x;
+		putpixel(x1 , y1, 5);
+
+    }
+    getch();
+    setcolor(10);
+    circle(sqx + k + 22, sqy, 70);
+    setcolor(WHITE);
 	getch();
+	cleardevice();
 }
 
 void Action10()
@@ -331,4 +370,21 @@ void Action31()
 	cleardevice();
 	outtextxy(600, 600, "31");
 	getch();
+}
+
+void About()
+{
+	cleardevice();
+	setfillstyle(1, CYAN);
+	bar(getmaxx() / 2 - 210, getmaxy() / 4 + 10, getmaxx() / 2 + 270, getmaxy() / 4 + 240); 
+	setfillstyle(1, 0);
+	bar(getmaxx() / 2 - 200, getmaxy() / 4 + 20, getmaxx() / 2 + 260, getmaxy() / 4 + 230); 
+	settextstyle(3, 0, 5);
+	setcolor(9);
+	outtextxy(getmaxx() / 2 - 60, getmaxy() / 4 + 50, "Виконав");
+	outtextxy(getmaxx() / 2 - 160, getmaxy() / 4 + 100, "студент групи П-220");
+	outtextxy(getmaxx() / 2 - 145, getmaxy() / 4 + 150, "Слуковський М. Ю.");	
+	getch();
+	setcolor(WHITE);
+	cleardevice();
 }
